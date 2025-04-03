@@ -1,11 +1,7 @@
 import type { App } from 'vue';
-
-type UserOptions = {
-    environment: string;
-    element?: keyof HTMLElementTagNameMap;
-};
-
-type Options = Required<UserOptions>;
+import type { UserOptions } from './types';
+import { warn } from './utils/log';
+import { mergeOptions } from './utils/options';
 
 export default {
     install: (app: App, options: UserOptions) => {
@@ -27,37 +23,9 @@ export default {
 
         const displayText: HTMLSpanElement = document.createElement('span');
         displayText.innerText = mergedOptions.environment;
-        // displayText.style.cssText = '';
+        displayText.style.cssText = 'text-transform: uppercase;';
 
         indicator.appendChild(displayText);
         body.appendChild(indicator);
     },
 };
-
-/**
- * Merge default options with the provided options to ensure a full set of options.
- *
- * @param options The use-provided options.
- * @returns A merged object of set options.
- */
-function mergeOptions(options: UserOptions): Options {
-    const defaultOptions: Options = {
-        environment: 'dev',
-        element: 'mark',
-    };
-
-    return Object.assign(defaultOptions, options);
-}
-
-/**
- * Log a console warning with the plugin prefix.
- *
- * @param message The message to log.
- */
-function warn(message: string): void {
-    if (typeof console === 'undefined') {
-        return;
-    }
-
-    console.warn('[vue-environment-indicator] ' + message);
-}
