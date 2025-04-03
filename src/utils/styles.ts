@@ -38,7 +38,7 @@ const rotations: Record<IndicatorPosition, StyleOptions> = {
  * @returns The styling string for the ribbon.
  */
 export function getStyling(position: IndicatorPosition, rotate: boolean = true): string {
-    const positionedStyling = Object.assign(base, positions[position]);
+    const positionedStyling = Object.assign({}, base, positions[position]);
     if (!rotate) {
         return createCssText(positionedStyling);
     }
