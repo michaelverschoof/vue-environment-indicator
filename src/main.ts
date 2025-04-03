@@ -7,6 +7,10 @@ import Indicator from './environment-indicator';
 
 const app = createApp(App);
 
-app.use(Indicator, { environment: process.env.NODE_ENV });
+app.use(Indicator, {
+    environment: process.env.NODE_ENV,
+    type: 'ribbon',
+    position: 'topLeft'
+});
 
 app.mount('#app');
