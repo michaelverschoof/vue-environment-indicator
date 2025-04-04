@@ -1,7 +1,7 @@
 import { afterAll, beforeEach, expect, test, vi } from 'vitest';
 import { warn } from './log';
 
-const consoleSpy = vi.spyOn(console, 'warn');
+const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(vi.fn());
 
 beforeEach(() => {
     vi.clearAllMocks();

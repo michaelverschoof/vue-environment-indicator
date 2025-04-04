@@ -1,18 +1,12 @@
 {
-    "name": "vue-environment-indicator-root",
+    "name": "vue-environment-indicator-playground",
     "version": "0.0.0",
     "private": true,
     "type": "module",
-    "workspaces": [
-        "packages/*"
-    ],
     "scripts": {
-        "build": "npm --prefix ./packages/environment-indicator/ run build",
-        "test": "npm --prefix ./packages/environment-indicator/ run test",
-        "test:once": "npm --prefix ./packages/environment-indicator/ run test:once",
-        "test:coverage": "npm --prefix ./packages/environment-indicator/ run test:coverage",
-        "dev": "npm --prefix ./packages/playground/ run dev",
-        "preview": "npm --prefix ./packages/playground/ run preview"
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
     },
     "dependencies": {
         "vue": "^3.5.13"

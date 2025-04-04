@@ -1,0 +1,68 @@
+{
+    "name": "vue-environment-indicator",
+    "description": "A tiny Vue plugin to show which environment you are working in.",
+    "version": "0.0.1",
+    "keywords": [
+        "vue",
+        "plugin",
+        "environment",
+        "env",
+        "indicator",
+        "ribbon",
+        "typed",
+        "typescript",
+        "ts",
+        "type",
+        "safe"
+    ],
+    "license": "MIT",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/vue-environment-indicator.umd.cjs",
+    "module": "./dist/vue-environment-indicator.js",
+    "exports": {
+        ".": {
+            "import": "./dist/vue-environment-indicator.js",
+            "require": "./dist/vue-environment-indicator.umd.cjs"
+        }
+    },
+    "scripts": {
+        "build": "run-p type-check \"build-only {@}\" --",
+        "test": "vitest",
+        "test:once": "clear && vitest run",
+        "test:coverage": "clear && vitest run --coverage",
+        "build-only": "vite build",
+        "type-check": "vue-tsc --build",
+        "lint": "eslint . --fix",
+        "format": "prettier --write src/"
+    },
+    "peerDependencies": {
+        "typescript": ">=4.4.4",
+        "vue": "^2.7.0 || ^3.5.11"
+    },
+    "devDependencies": {
+        "@tsconfig/node22": "^22.0.1",
+        "@types/jsdom": "^21.1.7",
+        "@types/node": "^22.14.0",
+        "@vitejs/plugin-vue": "^5.2.3",
+        "@vitest/coverage-v8": "^3.1.1",
+        "@vitest/eslint-plugin": "^1.1.39",
+        "@vue/eslint-config-prettier": "^10.2.0",
+        "@vue/eslint-config-typescript": "^14.5.0",
+        "@vue/test-utils": "^2.4.6",
+        "@vue/tsconfig": "^0.7.0",
+        "eslint": "^9.23.0",
+        "eslint-plugin-vue": "~10.0.0",
+        "jiti": "^2.4.2",
+        "jsdom": "^26.0.0",
+        "npm-run-all2": "^7.0.2",
+        "prettier": "^3.5.3",
+        "typescript": "5.8.2",
+        "vite": "^6.2.5",
+        "vite-plugin-vue-devtools": "^7.7.2",
+        "vitest": "^3.1.1",
+        "vue-tsc": "^2.2.8"
+    }
+}

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { getStyling } from './styles';
+import { getStyling } from './styling';
 
 const baseStyling = [
     'position: fixed',

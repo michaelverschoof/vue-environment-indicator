@@ -1,45 +1,55 @@
-# vue-environment-indicator
+# Vue Environment Indicator
 
-This template should help get you started developing with Vue 3 in Vite.
+> A tiny Vue plugin to show which environment you are working in.
 
-## Recommended IDE Setup
+- 💡 Intuitive
+- 🔑 Type Safe
+- ⚙️ Zero config needed
+- 📦 Extremely light
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Installation
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+# or pnpm or yarn
+npm install vue-environment-indicator
 ```
 
-### Compile and Hot-Reload for Development
+## Usage
 
-```sh
-npm run dev
+### Install the plugin
+
+Create an Environment Indicator and pass it to your app:
+
+```js
+// Vue 3
+import { createApp } from 'vue';
+import { createEnvironmentIndicator } from 'vue-environment-indicator';
+import App from './App.vue';
+
+const environmentIndicator = createEnvironmentIndicator();
+
+const app = createApp(App);
+app.use(environmentIndicator);
+app.mount('#app');
 ```
 
-### Type-Check, Compile and Minify for Production
+## Configuration
 
-```sh
-npm run build
+You can pass along configuration to the indicator. The below example shows all available options with their default values:
+
+```js
+const environmentIndicator = createEnvironmentIndicator({
+    // The environment value you want to display. You can use process.env.NODE_ENV for example.
+    environment: 'development',
+    // The HTML element to create.
+    element: 'mark',
+    // The type of indicator. Options are "ribbon" and "block".
+    type: 'ribbon',
+    // The position of the indicator. Options are "topLeft", "topRight", "bottomLeft" and "bottomRight".
+    position: 'topLeft'
+});
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## License
 
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+[MIT](http://opensource.org/licenses/MIT)

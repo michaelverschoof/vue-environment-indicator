@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils';
 import { expect, test, vi } from 'vitest';
-import EnvironmentIndicator from './environment-indicator';
+import { createEnvironmentIndicator } from './plugin';
 
 const TestComponent = { template: '<h1>Testing application</h1><p>Hello world!</p>' };
 
 test('Registers the plugin correctly', () => {
     mount(TestComponent, {
         global: {
-            plugins: [[EnvironmentIndicator, { environment: 'vitest' }]]
+            plugins: [[createEnvironmentIndicator({ environment: 'vitest' })]]
         }
     });
 
@@ -27,11 +27,11 @@ test('Registers the plugin correctly', () => {
 
 test('Logs a warning when there is no body and does not attach the indicator', () => {
     vi.spyOn(document, 'querySelector').mockImplementationOnce(() => null);
-    const consoleSpy = vi.spyOn(console, 'warn');
+    const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(vi.fn());
 
     mount(TestComponent, {
         global: {
-            plugins: [[EnvironmentIndicator, { environment: 'vitest' }]]
+            plugins: [[createEnvironmentIndicator({ environment: 'vitest' })]]
         }
     });
 
@@ -43,8 +43,6 @@ test('Logs a warning when there is no body and does not attach the indicator', (
     // The body styll exists as we only mocked the query selector
     const body = document.querySelector('body');
     expect(body).not.toBeNull();
-
-    console.log(body?.outerHTML);
 
     const indicators = body!.querySelectorAll('mark');
     expect(indicators.length).toBe(0);
