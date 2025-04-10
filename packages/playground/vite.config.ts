@@ -9,10 +9,10 @@ export default defineConfig({
     plugins: [vue(), vueDevTools()],
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('../environment-indicator/src', import.meta.url)),
-            'environment-indicator': fileURLToPath(
-                new URL('../environment-indicator/src', import.meta.url)
-            )
+            'vue-environment-indicator': fileURLToPath(
+                new URL('../vue-environment-indicator/main.ts', import.meta.url)
+            ),
+            '@': fileURLToPath(new URL('../vue-environment-indicator/src', import.meta.url))
         }
     }
 });

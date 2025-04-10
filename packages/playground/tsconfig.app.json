@@ -5,7 +5,8 @@
     "compilerOptions": {
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
         "paths": {
-            "environment-indicator/*": ["../environment-indicator/src/*"]
+            "vue-environment-indicator": ["../vue-environment-indicator/main.ts"],
+            "@/*": ["../vue-environment-indicator/src/*"]
         }
     }
 }
