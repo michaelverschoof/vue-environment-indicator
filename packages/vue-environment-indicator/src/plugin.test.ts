@@ -2,12 +2,21 @@ import { mount } from '@vue/test-utils';
 import { expect, test, vi } from 'vitest';
 import { createEnvironmentIndicator } from './plugin';
 
+vi.spyOn(window, 'matchMedia').mockImplementation(
+    (query) =>
+        ({
+            matches: false,
+            media: query
+        }) as MediaQueryList
+);
+
 const TestComponent = { template: '<h1>Testing application</h1><p>Hello world!</p>' };
+const environment = 'test';
 
 test('Registers the plugin correctly', () => {
     mount(TestComponent, {
         global: {
-            plugins: [[createEnvironmentIndicator({ environment: 'vitest' })]]
+            plugins: [[createEnvironmentIndicator({ environment: environment })]]
         }
     });
 
@@ -19,7 +28,7 @@ test('Registers the plugin correctly', () => {
 
     const indicator = indicators[0];
     expect(indicator).not.toBeNull();
-    expect(indicator.innerText).toBe('vitest');
+    expect(indicator.innerText).toBe(environment);
 
     // Clean up the html as we inject it via the plugin
     body!.innerHTML = '';
@@ -31,7 +40,7 @@ test('Logs a warning when there is no body and does not attach the indicator', (
 
     mount(TestComponent, {
         global: {
-            plugins: [[createEnvironmentIndicator({ environment: 'vitest' })]]
+            plugins: [[createEnvironmentIndicator({ environment: environment })]]
         }
     });
 

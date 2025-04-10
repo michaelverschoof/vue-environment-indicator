@@ -9,7 +9,7 @@ const app = createApp(App);
 
 app.use(
     createEnvironmentIndicator({
-        environment: process.env.NODE_ENV,
+        environment: 'staging',
         element: 'mark',
         type: 'ribbon',
         position: 'topLeft'

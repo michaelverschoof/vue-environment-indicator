@@ -1,98 +1,143 @@
-import { describe, expect, test } from 'vitest';
+import type { StyleDeclarations } from '@/types';
+import { describe, expect, test, vi } from 'vitest';
 import { getStyling } from './styling';
 
-const baseStyling = [
-    'position: fixed',
-    'display: flex',
-    'align-items: center',
-    'justify-content: center',
-    'background: rgba(255, 255, 0, 0.7)',
-    'min-width: 20rem',
-    'padding: 0.5rem 1rem',
-    'text-transform: uppercase',
-    'font-weight: 500'
-];
+const mediaSpy = vi.spyOn(window, 'matchMedia').mockImplementation(
+    (query) =>
+        ({
+            matches: false,
+            media: query
+        }) as MediaQueryList
+);
+
+const environment = 'test';
+
+const baseStyling: Partial<StyleDeclarations> = {
+    position: 'fixed',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 189, 126, 0.7)',
+    minWidth: '20rem',
+    padding: '0.5rem 1rem',
+    textTransform: 'uppercase',
+    fontWeight: '500',
+    transformOrigin: 'center',
+    color: 'black'
+};
 
 describe('Block Styling', () => {
     test('Returns the styling for top-left positioning', () => {
-        const specificStyling = ['top: 0', 'left: 0'];
-        const styling = getStyling('topLeft', false);
+        const specificStyling: Partial<StyleDeclarations> = { top: '0', left: '0' };
+        const styling = getStyling(environment, 'topLeft', 'block');
 
-        expect(styling.split('; ')).toEqual([...baseStyling, ...specificStyling]);
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 
     test('Returns the styling for top-right positioning', () => {
-        const specificStyling = ['top: 0', 'right: 0'];
-        const styling = getStyling('topRight', false);
+        const specificStyling: Partial<StyleDeclarations> = { top: '0', right: '0' };
+        const styling = getStyling(environment, 'topRight', 'block');
 
-        expect(styling.split('; ')).toEqual([...baseStyling, ...specificStyling]);
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 
     test('Returns the styling for bottom-left positioning', () => {
-        const specificStyling = ['bottom: 0', 'left: 0'];
-        const styling = getStyling('bottomLeft', false);
+        const specificStyling: Partial<StyleDeclarations> = { bottom: '0', left: '0' };
+        const styling = getStyling(environment, 'bottomLeft', 'block');
 
-        expect(styling.split('; ')).toEqual([...baseStyling, ...specificStyling]);
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 
     test('Returns the styling for bottom-right positioning', () => {
-        const specificStyling = ['bottom: 0', 'right: 0'];
-        const styling = getStyling('bottomRight', false);
+        const specificStyling: Partial<StyleDeclarations> = { bottom: '0', right: '0' };
+        const styling = getStyling(environment, 'bottomRight', 'block');
 
-        expect(styling.split('; ')).toEqual([...baseStyling, ...specificStyling]);
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
+    });
+
+    test('Returns the styling for dark mode', () => {
+        mediaSpy.mockImplementationOnce(
+            (query) =>
+                ({
+                    matches: true,
+                    media: query
+                }) as MediaQueryList
+        );
+
+        const specificStyling: Partial<StyleDeclarations> = { top: '0', left: '0', color: 'white' };
+        const styling = getStyling(environment, 'topLeft', 'block');
+
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 });
 
 describe('Ribbon Styling', () => {
     test('Returns the styling for top-left positioning', () => {
-        const specificStyling = [
-            'top: 0',
-            'left: 0',
-            'transform: rotate(-45deg) translate(-30%, 30%)',
-            'transform-origin: center'
-        ];
+        const specificStyling: Partial<StyleDeclarations> = {
+            top: '0',
+            left: '0',
+            transform: 'rotate(-45deg) translate(-30%, 30%)'
+        };
 
-        const styling = getStyling('topLeft');
+        const styling = getStyling(environment, 'topLeft');
 
-        expect(styling.split('; ')).toEqual([...baseStyling, ...specificStyling]);
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 
     test('Returns the styling for top-right positioning', () => {
-        const specificStyling = [
-            'top: 0',
-            'right: 0',
-            'transform: rotate(45deg) translate(30%, 30%)',
-            'transform-origin: center'
-        ];
+        const specificStyling: Partial<StyleDeclarations> = {
+            top: '0',
+            right: '0',
+            transform: 'rotate(45deg) translate(30%, 30%)'
+        };
 
-        const styling = getStyling('topRight');
+        const styling = getStyling(environment, 'topRight');
 
-        expect(styling.split('; ')).toEqual([...baseStyling, ...specificStyling]);
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 
     test('Returns the styling for bottom-left positioning', () => {
-        const specificStyling = [
-            'bottom: 0',
-            'left: 0',
-            'transform: rotate(45deg) translate(-30%, -30%)',
-            'transform-origin: center'
-        ];
+        const specificStyling: Partial<StyleDeclarations> = {
+            bottom: '0',
+            left: '0',
+            transform: 'rotate(45deg) translate(-30%, -30%)'
+        };
 
-        const styling = getStyling('bottomLeft');
+        const styling = getStyling(environment, 'bottomLeft');
 
-        expect(styling.split('; ')).toEqual([...baseStyling, ...specificStyling]);
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 
     test('Returns the styling for bottom-right positioning', () => {
-        const specificStyling = [
-            'bottom: 0',
-            'right: 0',
-            'transform: rotate(-45deg) translate(30%, -30%)',
-            'transform-origin: center'
-        ];
+        const specificStyling: Partial<StyleDeclarations> = {
+            bottom: '0',
+            right: '0',
+            transform: 'rotate(-45deg) translate(30%, -30%)'
+        };
 
-        const styling = getStyling('bottomRight');
+        const styling = getStyling(environment, 'bottomRight');
 
-        expect(styling.split('; ')).toEqual([...baseStyling, ...specificStyling]);
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
+    });
+
+    test('Returns the styling for dark mode', () => {
+        mediaSpy.mockImplementationOnce(
+            (query) =>
+                ({
+                    matches: true,
+                    media: query
+                }) as MediaQueryList
+        );
+
+        const specificStyling: Partial<StyleDeclarations> = {
+            top: '0',
+            left: '0',
+            transform: 'rotate(-45deg) translate(-30%, 30%)',
+            color: 'white'
+        };
+
+        const styling = getStyling(environment, 'topLeft');
+
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 });
