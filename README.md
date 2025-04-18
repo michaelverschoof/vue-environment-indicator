@@ -26,12 +26,14 @@ import { createApp } from 'vue';
 import { createEnvironmentIndicator } from 'vue-environment-indicator';
 import App from './App.vue';
 
-const environmentIndicator = createEnvironmentIndicator();
-
 const app = createApp(App);
-app.use(environmentIndicator);
+app.use(createEnvironmentIndicator());
 app.mount('#app');
 ```
+
+<p align="center" style="margin-top: 5rem; margin-bottom: 5rem;">
+    <img src="./assets/preview.png" width="500" />
+</p>
 
 ## Configuration
 
