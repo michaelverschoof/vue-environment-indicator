@@ -22,8 +22,6 @@ export default defineConfig({
                     vue: 'Vue'
                 }
             }
-        },
-        outDir: '../../dist',
-        emptyOutDir: true
+        }
     }
 });

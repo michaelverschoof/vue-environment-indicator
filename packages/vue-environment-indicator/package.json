@@ -5,7 +5,7 @@
         "name": "Michael Verschoof",
         "email": "michael.verschoof@gmail.com"
     },
-    "version": "0.1.0",
+    "version": "0.1.6",
     "keywords": [
         "vue",
         "plugin",
@@ -22,12 +22,13 @@
     "license": "MIT",
     "type": "module",
     "files": [
-        "dist/*.js",
+        "dist",
         "LICENSE",
         "README.md"
     ],
     "main": "./dist/vue-environment-indicator.umd.cjs",
     "module": "./dist/vue-environment-indicator.js",
+    "types": "./dist/types/index.d.ts",
     "exports": {
         ".": {
             "types": "./dist/types.d.ts",
@@ -39,16 +40,22 @@
         "build": "npm run types:check && npm run build:only && npm run types:generate",
         "build:only": "vite build",
         "types:check": "vue-tsc --build",
-        "types:generate": "vue-tsc ./types.ts --declaration --emitDeclarationOnly --outdir ../../dist",
+        "types:generate": "vue-tsc ./types.ts --declaration --emitDeclarationOnly --outdir dist",
         "test": "clear && vitest run",
         "test:watch": "vitest",
         "test:coverage": "clear && vitest run --coverage",
         "lint": "eslint . --fix",
-        "format": "prettier --write src/"
+        "format": "prettier --write src/",
+        "release": "clear && npm install && npm run build && npm publish"
     },
     "peerDependencies": {
         "typescript": ">=4.4.4",
         "vue": "^2.7.0 || ^3.5.11"
+    },
+    "peerDependenciesMeta": {
+        "typescript": {
+            "optional": true
+        }
     },
     "devDependencies": {
         "@tsconfig/node22": "^22.0.1",
@@ -64,7 +71,7 @@
         "eslint": "^9.24.0",
         "eslint-plugin-vue": "~10.0.0",
         "jiti": "^2.4.2",
-        "jsdom": "^26.0.0",
+        "jsdom": "^26.1.0",
         "npm-run-all2": "^7.0.2",
         "prettier": "^3.5.3",
         "typescript": "^5.8.3",
