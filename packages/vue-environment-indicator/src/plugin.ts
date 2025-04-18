@@ -5,7 +5,7 @@ import { getStyling } from '@/utils/styling';
 import type { Plugin } from 'vue';
 
 export function createEnvironmentIndicator(userOptions: UserOptions): Plugin {
-    const EnvironmentIndicatorPlugin: Plugin = {
+    const plugin: Plugin = {
         install: () => {
             const body = document.querySelector('body');
             if (!body) {
@@ -27,5 +27,5 @@ export function createEnvironmentIndicator(userOptions: UserOptions): Plugin {
         }
     };
 
-    return EnvironmentIndicatorPlugin;
+    return plugin;
 }
