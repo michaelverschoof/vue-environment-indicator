@@ -1,6 +1,6 @@
 {
     "name": "vue-environment-indicator",
-    "description": "A tiny Vue plugin to show which environment you are working in.",
+    "description": "A tiny Vue plugin to show the environment you are working in.",
     "author": {
         "name": "Michael Verschoof",
         "email": "michael.verschoof@gmail.com"
@@ -53,10 +53,10 @@
     "devDependencies": {
         "@tsconfig/node22": "^22.0.1",
         "@types/jsdom": "^21.1.7",
-        "@types/node": "^22.14.0",
+        "@types/node": "^22.14.1",
         "@vitejs/plugin-vue": "^5.2.3",
         "@vitest/coverage-v8": "^3.1.1",
-        "@vitest/eslint-plugin": "^1.1.40",
+        "@vitest/eslint-plugin": "^1.1.43",
         "@vue/eslint-config-prettier": "^10.2.0",
         "@vue/eslint-config-typescript": "^14.5.0",
         "@vue/test-utils": "^2.4.6",
@@ -68,8 +68,8 @@
         "npm-run-all2": "^7.0.2",
         "prettier": "^3.5.3",
         "typescript": "^5.8.3",
-        "vite": "^6.2.5",
-        "vite-plugin-vue-devtools": "^7.7.2",
+        "vite": "^6.3.2",
+        "vite-plugin-vue-devtools": "^7.7.5",
         "vitest": "^3.1.1",
         "vue-tsc": "^2.2.8"
     }
