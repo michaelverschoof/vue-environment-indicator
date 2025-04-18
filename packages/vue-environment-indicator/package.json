@@ -40,8 +40,8 @@
         "build:only": "vite build",
         "types:check": "vue-tsc --build",
         "types:generate": "vue-tsc ./types.ts --declaration --emitDeclarationOnly --outdir ../../dist",
-        "test": "vitest",
-        "test:once": "clear && vitest run",
+        "test": "clear && vitest run",
+        "test:watch": "vitest",
         "test:coverage": "clear && vitest run --coverage",
         "lint": "eslint . --fix",
         "format": "prettier --write src/"
