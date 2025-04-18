@@ -3,11 +3,11 @@ import { warn } from '@/utils/log';
 import { mergeOptions } from '@/utils/options';
 import { getStyling } from '@/utils/styling';
 
-export function createEnvironmentIndicator(options: UserOptions) {
+export function createEnvironmentIndicator(options?: UserOptions) {
     return () => EnvironmentIndicatorPlugin(options);
 }
 
-const EnvironmentIndicatorPlugin = (userOptions: UserOptions) => {
+const EnvironmentIndicatorPlugin = (userOptions?: UserOptions) => {
     const body = document.querySelector('body');
     if (!body) {
         warn('No body element found to attach to.');
