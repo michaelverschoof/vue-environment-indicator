@@ -55,6 +55,17 @@ describe('Block Styling', () => {
         expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
     });
 
+    test('Returns the styling for staging when using a custom environment', () => {
+        const specificStyling: Partial<StyleDeclarations> = {
+            bottom: '0',
+            right: '0',
+            backgroundColor: 'rgba(255, 160, 0, 0.7)'
+        };
+        const styling = getStyling('vitest', 'bottomRight', 'block');
+
+        expect(styling).toEqual(Object.assign({}, baseStyling, specificStyling));
+    });
+
     test('Returns the styling for dark mode', () => {
         mediaSpy.mockImplementationOnce(
             (query) =>

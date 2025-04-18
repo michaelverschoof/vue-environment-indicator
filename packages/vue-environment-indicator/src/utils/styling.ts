@@ -57,14 +57,17 @@ const rotations: Record<IndicatorPosition, RotateStyleDeclaration> = {
  * @returns The styling string for the indicator.
  */
 export function getStyling(
-    environment: Environment,
+    environment: Environment | string,
     position: IndicatorPosition,
     type: IndicatorType = 'ribbon'
 ): StyleDeclarations {
+    const background =
+        environment in backgrounds ? backgrounds[environment as Environment] : backgrounds.staging;
+
     const styling: StyleDeclarations = Object.assign(
         {},
         base,
-        backgrounds[environment],
+        background,
         positions[position],
         getPreferredColor()
     );

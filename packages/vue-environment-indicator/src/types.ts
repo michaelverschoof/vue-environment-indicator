@@ -3,7 +3,7 @@ export type IndicatorType = 'ribbon' | 'block';
 export type IndicatorPosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
 export type UserOptions = {
-    environment: Environment;
+    environment: Environment | string;
     element?: keyof HTMLElementTagNameMap;
     type?: IndicatorType;
     position?: IndicatorPosition;
